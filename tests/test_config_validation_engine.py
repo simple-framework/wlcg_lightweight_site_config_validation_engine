@@ -1,4 +1,3 @@
-from .context import Context as con
 from . import get_fixture
 
 # import modules from the project for testing
@@ -14,5 +13,5 @@ def test_validate():
     print('Data')
     print(custom['schema'])
     # validate(custom['schema'], custom['good'])
-    validate(get_fixture('schema.yml'),get_fixture('data_good.yml'))
+    validate(get_fixture('schema.yml'),get_fixture('data_bad.yml'))
 
