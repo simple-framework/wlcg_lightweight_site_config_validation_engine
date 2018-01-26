@@ -8,10 +8,11 @@ import io
 import os
 import sys
 from shutil import rmtree
-from setuptools import setup, find_packages
+from setuptools import setup, find_packages, Command
 
 # Package Info
 NAME = 'wlcg_lightweight_site_config_validation_engine'
+MODULE_SRC_DIR = 'config_validation_engine'
 DESCRIPTION = 'Validation engine for configuration files that descrtibe WLCG Lightweight Sites'
 URL = 'https://github.com/WLCG-Lightweight-Sites/wlcg_lightweight_site_config_validation_engine'
 EMAIL = 'mayank.sharma@cern.ch'
@@ -29,7 +30,7 @@ with io.open(os.path.join(here, 'README.md'), encoding='utf-8') as f:
 
 # Load the package's __version__.py module as a dictionary.
 about = {}
-with open(os.path.join(here, NAME, '__version__.py')) as f:
+with open(os.path.join(here, MODULE_SRC_DIR ,'__version__.py')) as f:
     exec(f.read(), about)
 
 class UploadCommand(Command):
