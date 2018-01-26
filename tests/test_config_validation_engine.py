@@ -13,5 +13,5 @@ def test_validate():
     print('Data')
     print(custom['schema'])
     # validate(custom['schema'], custom['good'])
-    validate(get_fixture('schema.yml'),get_fixture('data_bad.yml'))
+    validate(get_fixture('schema.yml'),get_fixture('data_good.yml'))
 
