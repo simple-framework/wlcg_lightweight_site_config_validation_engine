@@ -1,2 +1,3 @@
-string : "test"
-number : 10
+email: example@domain.com
+latitude : 10
+longitude : 10

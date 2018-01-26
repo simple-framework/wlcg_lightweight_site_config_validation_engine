@@ -17,8 +17,8 @@ class Latitude(Validator):
         else:
             return False
 
-    #def fail(self, value):
-    #    return '\'%s\' not in %s' % (value, self.)
+    def fail(self, value):
+        return '\'%s\' is not a valid %s value. The acceptable range of values is %s' % (value, tag, '-90 to 90')
 
 class Longitude(Validator):
     """Longitude Validator"""
@@ -29,6 +29,9 @@ class Longitude(Validator):
         else:
             return False
 
+    def fail(self, value):
+        return '\'%s\' is not a valid %s value. The acceptable range of values is %s' % (value, tag, '-180 to 180')
+    
 class URL(Validator):
     """URL Validator"""
     tag = 'url'
