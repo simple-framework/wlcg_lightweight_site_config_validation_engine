@@ -4,9 +4,9 @@ python:
   - "3.4"
   - "3.5"
   - "3.6"
-  # PyPy versions
-  - "pypy"
-  - "pypy3"
+  # PyPy versions, TODO: enable later if seeking faster performance
+  #- "pypy"
+  #- "pypy3"
 # command to install dependencies
 install:
   - pip install .
