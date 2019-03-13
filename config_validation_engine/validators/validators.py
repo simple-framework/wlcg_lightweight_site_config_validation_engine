@@ -1,12 +1,12 @@
 import yamale
 from yamale.validators import DefaultValidators, Validator
-
+from email.utils import parseaddr
 
 class Email(Validator):
     """Email Validator"""
     tag = 'email'
     def _is_valid(self,value):
-        return False
+        parseaddr(value)
 
 class Latitude(Validator):
     """Latitude Validator"""
