@@ -6,7 +6,15 @@ class Email(Validator):
     """Email Validator"""
     tag = 'email'
     def _is_valid(self,value):
-        parseaddr(value)
+        name, address = parseaddr(value)
+        parts = address.split(u"@")
+        if(parts[1] == "cern.ch"):
+            return True
+        else:
+            return False
+
+    def fail(self, value):
+        return '\'%s\' is not a valid %s value. The acceptable format is %s' % (value, self.tag, 'example@cern.ch')
 
 class Latitude(Validator):
     """Latitude Validator"""
