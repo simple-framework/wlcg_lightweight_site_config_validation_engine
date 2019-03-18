@@ -1,3 +1,4 @@
+cern_email: email(domain='cern.ch')
 email : str()
 latitude: latitude()
 longitude: longitude()

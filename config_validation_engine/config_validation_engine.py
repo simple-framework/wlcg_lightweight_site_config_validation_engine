@@ -1,7 +1,6 @@
 from validators.validators import all_config_validators
 import yamale
 import argparse
-from email.utils import parseaddr
 
 
 def validate(schema, data):
@@ -23,20 +22,9 @@ def parse_args():
     }
 
 
-def email_domain_validator(domain, addresses):
-    for address in addresses:
-        name, email_addr = parseaddr(address)
-        email_parts = email_addr.split(u'@')
-        if (domain == email_parts[1]):
-            print("Valid email address: ",email_addr)
-        else:
-            print("Invalid email address: ",email_addr)
-
-
 if __name__ == "__main__":
     args = parse_args()
     data = args['data']
     schema = args['schema']
-    # email_domain_validator('cern.ch',['example.example@cern.ch','example@gmail.com'])
     validate(schema, data)
     pass
