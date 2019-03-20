@@ -2,13 +2,14 @@ import yamale
 from yamale.validators import DefaultValidators, Validator
 from email.utils import parseaddr
 from .constraints import EmailDomain
+from validate_email import validate_email
 
 class Email(Validator):
     """Email Validator"""
     constraints = [EmailDomain]
     tag = 'email'
     def _is_valid(self,value):
-        if (str == type(value)):
+        if ((str == type(value)) & (validate_email(value) == True)):
             return True
         else:
             return False
