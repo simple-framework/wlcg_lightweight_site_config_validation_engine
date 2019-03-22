@@ -1,0 +1,15 @@
+site:
+  name: simple-dev-site
+  email: mayank.sharma@cern.ch
+  latitude: 46.3
+  longitude: 6.2
+  location: CERN, Geneva, Switzerland
+  description: A demo site demonstrating the SIMPLE framework for site setup
+  website: https://home.cern
+  support_website: https://groups.google.com/forum/#!forum/wlcg-lightweight-sites
+  support_email: mayank.sharma@cern.ch
+  security_email: mayank.sharma@cern.ch
+  grid: wlcg
+  tier: 3
+  bdii_host: bdii.cern.ch
+  use_argus: false
