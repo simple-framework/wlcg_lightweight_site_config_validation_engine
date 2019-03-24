@@ -1,0 +1,5 @@
+site_infrastructure: list(include('component'))
+---
+component:
+    fqdn: str()
+    ip_address: ip_address()
