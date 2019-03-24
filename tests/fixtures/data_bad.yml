@@ -1,3 +1,4 @@
-email: example@com
+cern_email: abcd@gmail.com
+email: example@domain.com
 latitude : '10'
 longitude : '100'
