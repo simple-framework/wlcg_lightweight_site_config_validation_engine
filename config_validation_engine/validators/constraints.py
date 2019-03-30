@@ -15,3 +15,13 @@ class EmailDomain(Constraint):
 
 	def _fail(self,value):
 		return self.fail % (value,self.domain)
+
+class Ipv4Constraint(Constraint):
+
+    def _is_valid(self, value):
+        
+        digits = map(int, value.split("."))
+        if all(filter(lambda x: 0 <= x < 256, digits)):
+            return True
+        else:
+            return False

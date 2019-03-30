@@ -1,0 +1,5 @@
+site_infrastructure: list(include('site_data'))
+---
+site_data:
+    fqdn: domain()
+    ip_address: ipv4()
