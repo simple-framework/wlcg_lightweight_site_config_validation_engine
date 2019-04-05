@@ -1,0 +1,5 @@
+site_infrastructure:
+- fqdn: lightweight_component01.cern.ch
+  ip_address: 192.168.0.4
+- fqdn: lightweight_component02.cern.ch
+  ip_address: 192.168.0.5

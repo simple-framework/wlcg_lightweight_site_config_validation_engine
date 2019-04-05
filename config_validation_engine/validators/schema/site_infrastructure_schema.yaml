@@ -1,0 +1,5 @@
+site_infrastructure: list(include('domain_ip_record'))
+
+domain_ip_record:
+  fqdn: domain()
+  ip_address: ip(version=4)

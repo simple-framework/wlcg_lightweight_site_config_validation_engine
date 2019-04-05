@@ -4,7 +4,7 @@ from .constraints import EmailDomain
 from validate_email import validate_email
 from urlparse import urlparse
 from math import ceil, floor
-
+from fqdn import FQDN
 
 class Email(Validator):
     """Email Validator"""
@@ -59,6 +59,21 @@ class URL(Validator):
             return True
         return False
 
+class Domain(Validator):
+    """Domain Validator"""
+    tag = 'domain'
+
+    def _is_valid(self, value):
+        fqdn = FQDN(value)
+
+        return fqdn.is_valid
+
+    def fail(self, value):
+        return "{value} is not a valid {tag} value. An acceptable example is {example}".format(
+            value = value,
+            tag = self.tag,
+            example = "lightweight_component01.cern.ch"
+            )
 
 def all_config_validators():
     validators = DefaultValidators.copy()
@@ -66,4 +81,6 @@ def all_config_validators():
     validators[Longitude.tag] = Longitude
     validators[Latitude.tag] = Latitude
     validators[URL.tag] = URL
+    validators[Domain.tag] = Domain
+
     return validators
