@@ -19,9 +19,20 @@ class ValidatorTests(unittest.TestCase):
         assert not v._is_valid('test.com')
         assert v._is_valid('http://test.com')
 
+    def test_IP(self):
+        v = val.ipAddress()
+        assert not v._is_valid('74.125.224. 72')
+        assert not v._is_valid('256.125.224.72')
+        assert v._is_valid('74.125.224.72')
+
     def test_site_object(self):
         schema = yamale.make_schema('./config_validation_engine/validators/schema/site_object_schema.yaml', validators=val.all_config_validators())
         data = yamale.make_data('./config_validation_engine/validators/tests/site_object_data.yaml')
+        assert yamale.validate(schema, data)
+
+    def test_site_infra(self):
+        schema = yamale.make_schema('./config_validation_engine/validators/schema/site_infra_schema.yaml', validators=val.all_config_validators())
+        data = yamale.make_data('./config_validation_engine/validators/tests/site_infra_data.yaml')
         assert yamale.validate(schema, data)
 
 

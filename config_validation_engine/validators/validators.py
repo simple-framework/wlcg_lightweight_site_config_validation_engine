@@ -1,5 +1,4 @@
 from yamale.validators import DefaultValidators, Validator
-from email.utils import parseaddr
 from .constraints import EmailDomain
 from validate_email import validate_email
 from urlparse import urlparse
@@ -11,13 +10,12 @@ class Email(Validator):
     constraints = [EmailDomain]
     tag = 'email'
 
-    def _is_valid(self,value):
-        if ((str == type(value)) & (validate_email(value) == True)):
+    def _is_valid(self, value):
+        if ((str == type(value)) & (validate_email(value) is True)):
             return True
-        else:
-            return False
+        return False
 
-    def fail(self,value):
+    def fail(self, value):
         return '%s is not a valid %s value. The acceptable value is \'%s\'' % (value, self.tag, 'example@cern.ch')
 
 
@@ -60,10 +58,19 @@ class URL(Validator):
         return False
 
 
+class ipAddress(Validator):
+    """IP Address Validator"""
+    tag = 'ip_address'
+
+    def _is_valid(self, value):
+        return value.count('.') == 3 and all(0 <= int(num) < 256 and ' ' not in num for num in value.rstrip().split('.'))
+
+
 def all_config_validators():
     validators = DefaultValidators.copy()
     validators[Email.tag] = Email
     validators[Longitude.tag] = Longitude
     validators[Latitude.tag] = Latitude
     validators[URL.tag] = URL
+    validators[ipAddress.tag] = ipAddress
     return validators
