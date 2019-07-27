@@ -76,7 +76,7 @@ class Range(Validator):
         return isinstance(value, int) or isinstance(value, float)
 
     def fail(self, value):
-        return "'%s' is not a valid numeric value" % value
+        return "'%s' is not a valid numeric value in specified %s" % (value, self.tag)
 
 def all_config_validators():
     validators = DefaultValidators.copy()
