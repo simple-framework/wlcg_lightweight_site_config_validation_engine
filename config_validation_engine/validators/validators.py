@@ -1,9 +1,8 @@
 from yamale.validators import DefaultValidators, Validator
-from .constraints import EmailDomain
+from .constraints import EmailDomain, CharContains, RegexMatch
 from validate_email import validate_email
 from urlparse import urlparse
 from math import ceil, floor
-
 
 class Email(Validator):
     """Email Validator"""
@@ -65,6 +64,22 @@ class ipAddress(Validator):
     def _is_valid(self, value):
         return value.count('.') == 3 and all(0 <= int(num) < 256 and ' ' not in num for num in value.rstrip().split('.'))
 
+class String(Validator):
+    """Validator for string, with addtional constraints"""
+    tag = "str"
+    constraints = [CharContains, RegexMatch]
+
+    def _is_valid(self, value):
+        try: 
+            str(value)
+            return True
+        except: 
+            return False
+
+        # return isinstance(value, str)
+
+    def fail(self, value):
+        return "{} is not a valid {}".format(value, self.tag)
 
 def all_config_validators():
     validators = DefaultValidators.copy()
@@ -73,4 +88,5 @@ def all_config_validators():
     validators[Latitude.tag] = Latitude
     validators[URL.tag] = URL
     validators[ipAddress.tag] = ipAddress
+    validators[String.tag] = String
     return validators
