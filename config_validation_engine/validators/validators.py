@@ -3,7 +3,7 @@ from .constraints import EmailDomain
 from validate_email import validate_email
 from urlparse import urlparse
 from math import ceil, floor
-
+import requests
 
 class Email(Validator):
     """Email Validator"""
@@ -65,6 +65,26 @@ class ipAddress(Validator):
     def _is_valid(self, value):
         return value.count('.') == 3 and all(0 <= int(num) < 256 and ' ' not in num for num in value.rstrip().split('.'))
 
+class WebLink(URL):
+    """Web link validator"""
+    tag = 'weblink'
+
+    def _is_valid(self, value):
+        if not URL()._is_valid(value):
+            print "WARNING: %s is not a valid URL" % value
+
+            return True
+
+        try:
+            request = requests.get(value)
+
+            if request.status_code != 200:
+                print "WARNING: %s is not an active link" % value
+
+        except:
+            print "WARNING: %s is not an active link" % value
+
+        return True
 
 def all_config_validators():
     validators = DefaultValidators.copy()
@@ -73,4 +93,5 @@ def all_config_validators():
     validators[Latitude.tag] = Latitude
     validators[URL.tag] = URL
     validators[ipAddress.tag] = ipAddress
+    validators[WebLink.tag] = WebLink
     return validators
